@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>CLNDR Demo</title>
+		<meta charset="UTF-8">
+		<link rel="stylesheet" href="css/clndr.css">
+	</head>
+	<body>
+
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.8.3/underscore-min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.10.6/moment.min.js"></script>
+	<script src="../src/clndr.js"></script>
+
+	<div class="container">
+	    <div class="menu")><h5>menu</h5></div>
+		<div class="container">
+			<div class="cal1"></div>
+			<div class="info">
+				<div class="info_header"></div>
+				<div class="info_list"></div>
+			</div>
+		</div> 
+		<div class="addInfo">
+			Add new information<br><br>
+			<form  action="addInfo.php" method="POST">
+			
+			<table id="formTBL">
+			
+			
+				<tr>
+					<td><p>Name: </p></td>
+					<td>
+					<select name="name">
+						<option value ="Miao1">Test_firstname_lastname1</option>
+						<option value ="Miao2">Test_firstname_lastname2</option>
+						<option value ="Miao3">Test_firstname_lastname3</option>
+					</select>
+					</td>
+				</tr>
+				
+				<tr>
+					<td><p>Start: </p></td>
+					<td><input name="startTime" type="time" value="13:00"/></td>
+				</tr>
+			
+				<tr>
+					<td><p>End: </p></td>
+					<td><input name="endTime" type="time" value="13:30"/></td>
+				</tr>
+				
+				<tr>
+					<td><input type="submit" value="Submit"></td>
+				</tr>
+			</table>
+			</form>
+		</div>
+	</div>
+
+
+
+
+	<script>
+	
+	function formatDate(date) {
+		var monthNames = [
+			"January", "February", "March",
+			"April", "May", "June", "July",
+			"August", "September", "October",
+			"November", "December"
+		];
+
+		var day = date.getDate();
+		var monthIndex = date.getMonth();
+		var year = date.getFullYear();
+
+		return day + ' ' + monthNames[monthIndex] + ' ' + year;
+	}
+	
+	$(document).ready( function() {
+		var thisMonth = moment().format('YYYY-MM');
+		var dateselected = null;
+		
+		var eventArray = [
+			{
+				title: 'Multi-Day Event',
+				endDate: thisMonth + '-14',
+				startDate: thisMonth + '-10'
+			}, {
+				endDate: thisMonth + '-23',
+				startDate: thisMonth + '-21',
+				title: 'Another Multi-Day Event'
+			}, {
+				date: thisMonth + '-27',
+				title: 'Single Day Event'
+			}
+		];
+		
+		function loadInfoList(){
+			var list = "";
+			for(i = 0; i < 10; i++){
+				list += "<div class='info_event'> <a href='view'>View</a> <a href='delete'>Delete</a> 10:00 - 11:00 [First_name Last_name] </div>\n";
+			}
+			$("div.info_list").html(list);
+		
+		}
+
+		clndr1 = $('.cal1').clndr({
+			events: eventArray,
+			clickEvents: {
+				click: function (target) {
+					console.log('Cal-1 clicked: ', target);
+					if(dateselected != null)
+						$(dateselected.element).removeClass("choose");
+					dateselected = target;
+					$(target.element).addClass("choose");
+					$("div.info_header").html("Date Selected: " + dateselected.date.format('LL'));
+					
+					loadInfoList();
+				},
+				today: function () {
+					console.log('Cal-1 today');
+				},
+				nextMonth: function () {
+					console.log('Cal-1 next month');
+				},
+				previousMonth: function () {
+					console.log('Cal-1 previous month');
+				},
+				onMonthChange: function () {
+					console.log('Cal-1 month changed');
+				},
+				nextYear: function () {
+					console.log('Cal-1 next year');
+				},
+				previousYear: function () {
+					console.log('Cal-1 previous year');
+				},
+				onYearChange: function () {
+					console.log('Cal-1 year changed');
+				},
+				nextInterval: function () {
+					console.log('Cal-1 next interval');
+				},
+				previousInterval: function () {
+					console.log('Cal-1 previous interval');
+				},
+				onIntervalChange: function () {
+					console.log('Cal-1 interval changed');
+				}
+			},
+			multiDayEvents: {
+				singleDay: 'date',
+				endDate: 'endDate',
+				startDate: 'startDate'
+			},
+			showAdjacentMonths: true,
+			adjacentDaysChangeMonth: false
+		});
+		
+	});
+
+
+	</script>
+
+	</body>
+
+</html>

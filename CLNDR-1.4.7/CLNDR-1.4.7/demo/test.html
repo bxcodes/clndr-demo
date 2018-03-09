@@ -18,7 +18,7 @@
 			<div class="cal1"></div>
 			<div class="info">
 				<div class="info_header"></div>
-				<div class="info_list"></div>
+				<ul class="info_list"></ul>
 			</div>
 		</div> 
 		<div class="addInfo">
@@ -99,9 +99,9 @@
 		function loadInfoList(){
 			var list = "";
 			for(i = 0; i < 10; i++){
-				list += "<div class='info_event'> <a href='view'>View</a> <a href='delete'>Delete</a> 10:00 - 11:00 [First_name Last_name] </div>\n";
+				list += "<li class='info_event'> <a href='view'>View</a> <a href='delete'>Delete</a> 10:00 - 11:00 [First_name Last_name] </li>\n";
 			}
-			$("div.info_list").html(list);
+			$("ul.info_list").html(list);
 		
 		}
 

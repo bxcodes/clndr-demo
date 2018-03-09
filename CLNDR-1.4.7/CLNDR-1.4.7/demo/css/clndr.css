@@ -5,6 +5,15 @@ h5 {
   font-weight: bold;
   background: #71BBD2;
 }
+a:link,
+a:visited{
+  color:#002699;
+  text-decoration:none;
+}
+a:hover,
+a:active{
+  text-decoration:underline;
+}
 .container{
   float:left;
 }
@@ -13,16 +22,31 @@ h5 {
   margin: 10px 10px;
   max-width: 400px;
   font-family: 'Droid Sans Mono';
-  font-size: 14px;
+  font-size: 20px;
 }
 .info,
 .cal1 {
   margin: 10px 10px;
   max-width: 600px;
+  min-width:500px;
   height:auto;
   font-family: 'Droid Sans Mono';
-  font-size: 14px;
 }
+.info_header{
+  font-family: 'Droid Sans Mono';
+  font-size: 16px;
+  line-height:28px;
+  text-align:center;
+}
+.info_event{
+  list-style:none;
+  line-height:32px;
+}
+li:nth-of-type(odd).info_event{
+  background: #CCE8FF;
+}
+
+
 .menu{
   margin: 10px 10px;
   font-family: 'Droid Sans Mono';

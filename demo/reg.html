@@ -1,0 +1,78 @@
+
+<script type="text/javascript" src="http://ajax.aspnetcdn.com/ajax/jquery/jquery-1.4.4.min.js"></script>
+    <script type="text/javascript" src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.7/jquery.validate.min.js"></script>
+<div class="register_container">
+<form class="form-signin" method="post" id="register-form">
+<h2 class="form-signin-heading">User Registration Form</h2><hr />
+<div id="error">
+</div>
+<div class="form-group">
+<input type="email" class="form-control" placeholder="Email address" name="email" id="email" />
+<span id="check-e"></span>
+</div>
+<div class="form-group">
+<input type="text" class="form-control" placeholder="firstname" name="firstname" id="firstname" />
+</div>
+<div class="form-group">
+<input type="text" class="form-control" placeholder="lastname" name="lastname" id="lastname" />
+</div>
+<hr />
+<div class="form-group">
+<button type="submit" class="btn btn-default" name="btn-save" id="btn-submit">
+<span class="glyphicon glyphicon-log-in"></span>   Create Account
+</button>
+</div>
+</form>
+</div>
+
+
+<script>
+
+
+
+$('document').ready(function() {
+	/* handle form validation */
+	$("#register-form").validate({
+		rules:
+		{
+			email: {
+			required: true,
+			email: true
+			}
+		},
+		messages:
+		{
+			user_email: "please enter a valid email address"
+		},
+		submitHandler: submitForm
+	});
+	
+	/* handle form submit */
+	function submitForm() {
+		var data = $("#register-form").serialize();
+		$.ajax({
+			type : 'POST',
+			url : 'reg.php',
+			data : data,
+			beforeSend: function() {
+				$("#error").fadeOut();
+				$("#btn-submit").html('<span class="glyphicon glyphicon-transfer"></span>   sending ...');
+				$("#error").html('');
+			},
+			success : function(response) {
+				$("#error").fadeIn(1000, function(){
+				$("#error").html('<div class="alert alert-danger"> <span class="glyphicon glyphicon-info-sign"></span>'+ response +'</div>');
+				$("#btn-submit").html('<span class="glyphicon glyphicon-log-in"></span>   Create Account');
+			});
+
+			}
+		});
+		return false;
+	}
+});
+
+
+
+
+
+</script>

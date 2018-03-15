@@ -17,6 +17,7 @@
 <input type="text" class="form-control" placeholder="lastname" name="lastname" id="lastname" />
 </div>
 <hr />
+<input type="hidden" name="action" value="register"/>	
 <div class="form-group">
 <button type="submit" class="btn btn-default" name="btn-save" id="btn-submit">
 <span class="glyphicon glyphicon-log-in"></span>   Create Account
@@ -52,7 +53,7 @@ $('document').ready(function() {
 		var data = $("#register-form").serialize();
 		$.ajax({
 			type : 'POST',
-			url : 'reg.php',
+			url : 'http://www.sensusoft.com/JavaBridgeTemplate621/reg.php',
 			data : data,
 			beforeSend: function() {
 				$("#error").fadeOut();

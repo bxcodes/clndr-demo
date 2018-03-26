@@ -1,0 +1,48 @@
+
+<script type="text/javascript" src="http://ajax.aspnetcdn.com/ajax/jquery/jquery-1.4.4.min.js"></script>
+<script type="text/javascript" src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.7/jquery.validate.min.js"></script>
+
+<div>
+<select id="person">
+
+</select>
+
+</div>
+
+
+<script>
+
+
+
+$('document').ready(function() {
+	$.ajax({
+		type : 'POST',
+		url : 'http://www.sensusoft.com/JavaBridgeTemplate621/demo-api.php',
+		data : {action : 'personList'},
+		success : function(response) {
+			var arr = $.parseJSON(response);
+			$.each(arr, function(key, value){
+				$("#person").append(
+				"<option value='" + 
+				value['id'] + 
+				"'>[" + 
+				value['p_id'] +
+				"] " +
+				value['firstname'] + 
+				" " +
+				value['lastname'] + 
+				"</option>"
+				);
+				
+			});
+			$("div").append(response);
+		}
+	});
+
+});
+
+
+
+
+
+</script>

@@ -15,6 +15,10 @@ switch($action){
 	case 'update': 
 	$db->changePassword($_POST['email'], $_POST['password1'], $_POST['password2']);
 	break;
+	case 'personList':
+	$list = $db->personList();
+	echo json_encode($list);
+	break;
 	default:
 	echo 'API Action Error';
 	

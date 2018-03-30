@@ -8,6 +8,17 @@ header("Access-Control-Allow-Origin: *");
 
 $action = isset($_POST['action']) ? $_POST['action'] : '';
 
+session_start();
+
+if($action == 'login'){
+	
+} else {
+	
+}
+
+
+
+
 switch($action){
 	case 'register': 
 	$db->addUser($_POST['email'], $_POST['firstname'], $_POST['lastname']);

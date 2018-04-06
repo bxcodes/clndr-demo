@@ -1,0 +1,69 @@
+
+<script type="text/javascript" src="http://ajax.aspnetcdn.com/ajax/jquery/jquery-1.4.4.min.js"></script>
+<script type="text/javascript" src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.7/jquery.validate.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
+
+<div>
+
+<h2>Login</h2><hr>
+<div id="info">
+</div>
+
+<button id="btn1">get</button>
+<button id="btn2">set</button>
+<button id="btn3">reset</button>
+
+</div>
+
+
+<script>
+
+
+
+$('document').ready(function() {
+	
+	var apiurl = 'http://www.sensusoft.com/JavaBridgeTemplate621/testapi.php'
+	
+	$("#btn1").click(function(){
+		$.ajax({
+			type : 'POST',
+			url : apiurl,
+			data : {action : 'get'},
+			success : function(response, textStatus, request) {
+				$("#info").html(response);
+				alert(request.getAllResponseHeaders());
+			}
+		});
+		
+	});
+	$("#btn2").click(function(){
+		$.ajax({
+			type : 'POST',
+			url : apiurl,
+			data : {action : 'set'},
+			success : function(response) {
+				$("#info").html(response);
+			}
+		});
+	});
+	$("#btn3").click(function(){
+		$.ajax({
+			type : 'POST',
+			url : apiurl,
+			data : {action : 'reset'},
+			success : function(response) {
+				$("#info").html(response);
+			}
+		});
+	});
+	
+	
+	
+	
+});
+
+
+
+
+
+</script>

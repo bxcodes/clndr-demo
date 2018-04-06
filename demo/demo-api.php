@@ -10,12 +10,6 @@ $action = isset($_POST['action']) ? $_POST['action'] : '';
 
 session_start();
 
-if($action == 'login'){
-	
-} else {
-	
-}
-
 
 
 
@@ -35,7 +29,7 @@ switch($action){
 	if($login==null) echo 'login failed';
 	else {
 		echo 'login successful';
-		session_start();
+		
 		$_SESSION['name'] = 'aaa';
 		$_SESSION['active'] = $login['active'];
 		
@@ -43,7 +37,7 @@ switch($action){
 	}
 	break;
 	case 'loginStatus':
-	session_start();
+	
 	if(!isset($_SESSION['name'])) echo 'No login information';
 	else echo "Welcome, ".$_SESSION['name'].", status: ".$_SESSION['active'];
 	break;
